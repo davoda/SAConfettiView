@@ -69,7 +69,7 @@ public class SAConfettiView: UIView {
         }
 
         guard let path = Bundle(for: SAConfettiView.self).path(forResource: "SAConfettiView", ofType: "bundle"),
-            let imagePath = Bundle(path: path)?.path(forResource: type.imageName, ofType: "png") else { return nil }
+        let imagePath = Bundle(path: path)?.path(forResource: type.imageName, ofType: "png") else { return nil }
 
         let url = NSURL(fileURLWithPath: imagePath)
         let data = NSData(contentsOf: url as URL)
@@ -95,5 +95,9 @@ public class SAConfettiView: UIView {
         confetti.scaleSpeed = CGFloat(-0.1 * intensity)
         confetti.contents = imageForType(type: type)?.cgImage
         return confetti
+    }
+
+    public override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        return false
     }
 }
